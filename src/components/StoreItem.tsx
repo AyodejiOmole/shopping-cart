@@ -19,8 +19,10 @@ export default function StoreItem( { id, name, price, imgUrl}: StoreItemProps) {
         } else { return value }
     }
 
+    const quantity = getItemQuantity(id);
+
     return (
-        <div className="shadow-lg my-3 col-span-1 rounded-md cursor-pointer pb-3 h-[450px]">
+        <div className="shadow-lg my-3 col-span-1 rounded-md cursor-pointer pb-3 h-auto">
             <img src={imgUrl} alt={name} className="h-[300px] w-full rounded-tr-md rounded-tl-md" />
 
             <div className="flex flex-col text-center justify-center align-center px-4">
@@ -30,9 +32,17 @@ export default function StoreItem( { id, name, price, imgUrl}: StoreItemProps) {
 
                 <div>
                     {
-                        getItemQuantity(id) !== 0
+                        quantity !== 0
                             ? (
-                                <p>added</p>
+                                <div className="flex flex-col align-center justify-center">
+                                    <div className="flex justify-center align-center">
+                                        <button className="text-lg text-white bg-blue-500 py-2 px-3" onClick={() => dispatch(decreaseCartQuantity(id))}>-</button>
+                                        <p className="text-lg border-2 border-gray-200 py-2 px-3">{`${quantity} in Cart`}</p>
+                                        <button className="text-lg text-white bg-blue-500 py-2 px-3" onClick={() => dispatch(increaseCartQuantity(id))}>+</button>
+                                    </div>
+
+                                    <button className="bg-red-600 rounded p-3 mt-3 w-full" onClick={() => dispatch(removeFromCart(id))}> - Remove from Cart</button>
+                                </div>
                             ) 
                             : (<button 
                                 onClick={() => dispatch(increaseCartQuantity(id))}
