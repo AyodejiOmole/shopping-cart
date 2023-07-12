@@ -24,7 +24,7 @@ export default function Navbar() {
                 
             </div>
 
-            <div className="relative border-2 group p-3 border-black-200 rounded mx-auto lg:mx-0 md:mx-0">
+            <div className="relative cursor-pointer border-2 mt-4 lg:mt-0 md:mt-0 group p-3 border-black-200 rounded mx-auto lg:mx-0 md:mx-0">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 576 512"
