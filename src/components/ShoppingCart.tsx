@@ -24,7 +24,7 @@ export default function ShoppingCart() {
                     ))}
                 </div>
 
-                <div className="my-auto font-bold font-mono text-lg">
+                <div className="my-auto font-bold font-mono text-lg flex align-end justify-end">
                     Total{" "}
                     {`$${
                             cartItems.reduce((total: number, cartItem: CartItem) => {
