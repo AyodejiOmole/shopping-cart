@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useOpenCartContext } from "../context/OpenCartContext";
 
 const linkStyle = "text-sm font-bold hover:text-blue-600 font-mono leading-loose cursor-pointer";
 
 export default function Navbar() {
     const cartCount = useSelector((state: any) => state.cart).reduce((sum: number, next: any) => sum + next.quantity, 0);
-    console.log(useSelector((state: any) => state.cart));
+    const { openCart } = useOpenCartContext();
 
     return (
         <div className="flex justify-between justify-center shadow-sm mb-3 text-center align-center flex-col md:flex-row lg:flex-row border-2 border-gray-200 px-3 py-6 sticky lg:p-6">
@@ -24,7 +25,7 @@ export default function Navbar() {
                 
             </div>
 
-            <div className="relative cursor-pointer border-2 mt-4 lg:mt-0 md:mt-0 group p-3 border-black-200 rounded mx-auto lg:mx-0 md:mx-0">
+            <div onClick={() => openCart()} className="relative cursor-pointer border-2 mt-4 lg:mt-0 md:mt-0 group p-3 border-black-200 rounded mx-auto lg:mx-0 md:mx-0">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 576 512"
@@ -38,7 +39,6 @@ export default function Navbar() {
                     <p className="text-xs text-white">{cartCount}</p>
                 </div>
             </div>
-            
         </div>
     )
 }
